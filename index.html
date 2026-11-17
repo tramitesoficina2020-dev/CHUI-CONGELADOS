@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chui Congelados & Dietética — Catálogo Online</title>
+  <style>
+    :root {
+      --orange-900: #7C2D12;
+      --orange-700: #C2410C;
+      --orange-600: #EA580C;
+      --orange-500: #F97316;
+      --orange-400: #FB923C;
+      --orange-100: #FFEDD5;
+      --orange-50:  #FFF7ED;
+      --slate-900:  #0F172A;
+      --slate-700:  #334155;
+      --slate-500:  #64748B;
+      --slate-200:  #E2E8F0;
+      --bg-page:    #FAFAFA;
+      --whatsapp:   #16A34A;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg-page);
+      color: var(--slate-900);
+      padding-bottom: 90px;
+    }
+    .topbar {
+      background: #FFFFFF;
+      border-bottom: 1px solid var(--slate-200);
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      color: var(--slate-700);
+    }
+    .topbar strong {
+      color: var(--orange-600);
+      font-weight: 800;
+      font-size: 15px;
+      letter-spacing: -0.3px;
+    }
+    .topbar span.badge {
+      background: var(--orange-100);
+      color: var(--orange-700);
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 12px;
+    }
+    .hero {
+      max-width: 1120px;
+      margin: 18px auto 0;
+      padding: 0 16px;
+    }
+    .hero-card {
+      background: linear-gradient(135deg, #EA580C 0%, #F97316 55%, #FB923C 100%);
+      border-radius: 18px;
+      padding: 34px 24px;
+      color: #FFFFFF;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 10px 25px -5px rgba(234, 88, 12, 0.28);
+    }
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+      top: -80px;
+      left: -60px;
+    }
+    .hero-card::after {
+      content: "";
+      position: absolute;
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+      bottom: -90px;
+      right: -40px;
+    }
+    .hero-top-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+      position: relative;
+      z-index: 2;
+    }
+    .btn-wa-top {
+      background: rgba(255, 255, 255, 0.18);
+      color: #FFFFFF;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      padding: 7px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      backdrop-filter: blur(4px);
+    }
+    .btn-wa-top:hover { background: rgba(255, 255, 255, 0.28); }
+    .avatar-circle {
+      width: 76px;
+      height: 76px;
+      border-radius: 50%;
+      background: #FFFFFF;
+      color: var(--orange-600);
+      font-weight: 900;
+      font-size: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+      position: relative;
+      z-index: 2;
+    }
+    .hero-title {
+      font-size: 26px;
+      font-weight: 800;
+      margin-bottom: 6px;
+      position: relative;
+      z-index: 2;
+    }
+    .hero-sub {
+      font-size: 13.5px;
+      opacity: 0.95;
+      margin-bottom: 4px;
+      position: relative;
+      z-index: 2;
+    }
+    .hero-loc {
+      font-size: 12px;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      opacity: 0.9;
+      margin-bottom: 14px;
+      position: relative;
+      z-index: 2;
+    }
+    .ig-pill {
+      display: inline-block;
+      background: #FFFFFF;
+      color: var(--orange-700);
+      font-weight: 700;
+      font-size: 13px;
+      padding: 6px 16px;
+      border-radius: 999px;
+      text-decoration: none;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      position: relative;
+      z-index: 2;
+    }
+    .controls-wrap {
+      max-width: 1120px;
+      margin: 18px auto 0;
+      padding: 0 16px;
+    }
+    .tabs {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--slate-200);
+      scrollbar-width: none;
+    }
+    .tabs::-webkit-scrollbar { display: none; }
+    .tab-btn {
+      background: transparent;
+      border: none;
+      padding: 9px 15px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--slate-500);
+      cursor: pointer;
+      white-space: nowrap;
+      border-bottom: 3px solid transparent;
+      transition: all 0.15s;
+    }
+    .tab-btn:hover { color: var(--orange-600); }
+    .tab-btn.active {
+      color: var(--orange-600);
+      border-bottom-color: var(--orange-600);
+    }
+    .search-row {
+      margin-top: 14px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .search-input {
+      flex: 1;
+      min-width: 240px;
+      padding: 12px 16px;
+      border-radius: 12px;
+      border: 1.5px solid var(--slate-200);
+      background: #FFFFFF;
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+    .search-input:focus { border-color: var(--orange-500); }
+    .count-badge {
+      display: flex;
+      align-items: center;
+      background: var(--orange-50);
+      color: var(--orange-700);
+      border: 1px solid var(--orange-100);
+      padding: 0 14px;
+      border-radius: 12px;
+      font-size: 13px;
+      font-weight: 700;
+      height: 44px;
+    }
+    .grid {
+      max-width: 1120px;
+      margin: 18px auto 0;
+      padding: 0 16px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 14px;
+    }
+    .card {
+      background: #FFFFFF;
+      border: 1px solid var(--slate-200);
+      border-radius: 14px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.12s, box-shadow 0.12s, border-color 0.12s;
+      position: relative;
+    }
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.06);
+      border-color: var(--orange-400);
+    }
+    .new-tag {
+      position: absolute;
+      top: -9px;
+      right: 14px;
+      background: var(--orange-600);
+      color: #FFFFFF;
+      font-size: 10.5px;
+      font-weight: 800;
+      padding: 2px 9px;
+      border-radius: 999px;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+    .card-cat {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--orange-600);
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      margin-bottom: 4px;
+    }
+    .card-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--slate-900);
+      line-height: 1.3;
+      margin-bottom: 6px;
+    }
+    .card-meta {
+      font-size: 12.5px;
+      color: var(--slate-500);
+      margin-bottom: 14px;
+    }
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 10px;
+      border-top: 1px dashed var(--slate-200);
+    }
+    .price {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--slate-900);
+    }
+    .qty-controls {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .btn-add {
+      background: var(--orange-600);
+      color: #FFFFFF;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .btn-add:hover { background: var(--orange-700); }
+    .btn-qty {
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
+      border: 1.5px solid var(--orange-500);
+      background: var(--orange-50);
+      color: var(--orange-700);
+      font-weight: 800;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .qty-num {
+      font-weight: 800;
+      font-size: 14px;
+      min-width: 20px;
+      text-align: center;
+    }
+    .cart-bar {
+      position: fixed;
+      bottom: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: calc(100% - 32px);
+      max-width: 680px;
+      background: var(--slate-900);
+      color: #FFFFFF;
+      border-radius: 16px;
+      padding: 14px 20px;
+      display: none;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+      z-index: 50;
+    }
+    .cart-bar.visible { display: flex; }
+    .cart-info { font-size: 14px; }
+    .cart-info strong { font-size: 17px; color: var(--orange-400); display: block; }
+    .btn-checkout {
+      background: var(--whatsapp);
+      color: #FFFFFF;
+      border: none;
+      padding: 11px 18px;
+      border-radius: 12px;
+      font-weight: 800;
+      font-size: 14px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .btn-checkout:hover { filter: brightness(1.06); }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div><strong>CHUI</strong> &middot; Catálogo Digital</div>
+    <span class="badge">347 Productos Actualizados</span>
+  </div>
+
+  <div class="hero">
+    <div class="hero-card">
+      <div class="hero-top-actions">
+        <a class="btn-wa-top" href="https://wa.me/5492964644888" target="_blank">Ver en WhatsApp</a>
+        <button class="btn-wa-top" onclick="copiarLink()">Compartir tienda</button>
+      </div>
+      <div class="avatar-circle">CHUI</div>
+      <h1 class="hero-title">Chui Congelados &amp; Dietética</h1>
+      <p class="hero-sub">Congelados, Sin TACC, Keto y Almacén Saludable</p>
+      <p class="hero-loc">AV. SAN MARTÍN 561 &middot; FAMAILLÁ, TUCUMÁN, ARGENTINA</p>
+      <a class="ig-pill" href="https://instagram.com" target="_blank">@chui.congelados</a>
+    </div>
+  </div>
+
+  <div class="controls-wrap">
+    <div class="tabs" id="categoryTabs"></div>
+    <div class="search-row">
+      <input type="text" id="searchInput" class="search-input" placeholder="Buscar productos, marcas (Villecco, All Frozen, Panettone, En Casa Con Amor)..." />
+      <div class="count-badge" id="countBadge">347 productos</div>
+    </div>
+  </div>
+
+  <div class="grid" id="productGrid"></div>
+
+  <div class="cart-bar" id="cartBar">
+    <div class="cart-info">
+      <span id="cartCount">0 productos</span>
+      <strong id="cartTotal">$0</strong>
+    </div>
+    <button class="btn-checkout" onclick="enviarWhatsApp()">Pedir por WhatsApp &rarr;</button>
+  </div>
+
+  <script>
+    const TELEFONO_WHATSAPP = "5492964644888";
+    const PRODUCTS = [{"id": "LP-3", "name": "Bombitas de carne", "brand": "All Frozen", "pres": "Unidad", "price": 13700, "cat": "Congelados y Panificados", "is_new": false}, {"id": "LP-4", "name": "Bombitas de queso", "brand": "All Frozen", "pres": "Unidad", "price": 7700, "cat": "Congelados y Panificados", "is_new": false}, {"id": "LP-5", "name": "Canelones de espinaca", "brand": "All Frozen", "pres": "Unidad", "price": 7900, "cat": "Congelados y Panificados", "is_new": false}, {"id": "LP-6", "name": "Wrap de carne", "brand": "All Frozen", "pres": "Unidad", "price": 9000, "cat": "Congelados y Panificados", "is_new": false}, {"id": "LP-7", "name": "Wrap de jamón y queso", "brand": "All Frozen", "pres": "Unidad", "price": 8100, "cat": "Congelados y Panificados", "is_new": false}, {"id": "LP-8", "name": "Wrap de pollo", "brand": "All Frozen", "pres": "Unidad", "price": 9000, "cat": "Congelados y Panificados", "is_new": false}, {"id": "LP-9", "name": "Wrap de vegetales grillados", "brand": "All Frozen", "pres": "Unidad", "price": 8100, "cat": "Congelados y Panificados", "is_new": false}, {"id": "LP-10", "name": "Tarta de calabaza y queso", "brand": "All Frozen", "pres": "Unidad", "price": 7300, "cat": "Congelados y Panificados", "is_new": false}, {"id": "LP-11", "name": "Tarta de espinaca y queso", "brand": "All Frozen", "pres": "Unidad", "price": 7300, "cat": "Congelados y Panificados", "is_new": false}, {"id": "LP-12", "name": "Tarta de verduras", "brand": "All Frozen", "pres": "Unidad", "price": 7300, "cat": "Congelados y Panificados", "is_new": false}, {"id": "LP-13", "name": "Medallón de merluza con espinaca", "brand": "All Frozen", "pres": "Unidad", "price": 4800, "cat": "Congelados y Panificados", "is_new": false}, {"id": "LP-14", "name": "Barritas de muzzarella", "brand": "All Frozen", "pres": "Unidad", "price": 4500, "cat": "Congelados y Panificados", "is_new": false}, {"id": "LP-15", "name": "Relleno para tacos", "brand": "All Frozen", "pres": "Unidad", "price": 4000, "cat": "Congelados y Panificados", "is_new": false}, {"id": "LP-16", "name": "Relleno de tarta de espinaca", "brand": "All Frozen", "pres": "Unidad", "price": 6600, "cat": "Congelados y Panificados", "is_new": false}, {"id": "LP-17", "name": "Bondiola braseada", "brand": "All Frozen", "pres": "Unidad", "price": 9900, "cat": "Congelados y Panificados", "is_new": false}, {"id": "LP-18", "name": "Bombitas Frozen de Queso sin gluten", "brand": "Frozen Gluten Free", "pres": "Pack (x2 un)", "price": 9600, "cat": "Congelados y Panificados", "is_new": false}, {"id": "LP-19", "name": "Burritos Frozen x 2U sin gluten", "brand": "Frozen Gluten Free", "pres": "Pack x 2 un (x4 comprados)", "price": 11800, "cat": "Congelados y Panificados", "is_new": false}, {"id": "LP-20", "name": "Tarta de Calabaza y Queso sin gluten", "brand": "Frozen Gluten Free", "pres": "Unidad individual (x2 un)", "price": 9800, "cat": "Congelados y Panificados", "is_new": false}, {"id": "LP-21", "name": "Tarta Frozen Acelga y Ricota sin gluten", "brand": "Frozen Gluten Free", "pres": "Unidad individual (x2 un)", "price": 9300, "cat": "Congelados y Panificados", "is_new": false}, {"id": "LP-22", "name": "Tutuca reducida en azúcar", "brand": "Octaviano", "pres": "Kilo", "price": 6900, "cat": "Dietética y Saludables", "is_new": false}, {"id": "LP-23", "name": "Premezcla panqueque vainilla One Two Fit", "brand": "Octaviano", "pres": "Unidad", "price": 7600, "cat": "Dietética y Saludables", "is_new": false}, {"id": "LP-24", "name": "Ciruela Presidente sin carozo", "brand": "Octaviano", "pres": "200gr", "price": 4000, "cat": "Dietética y Saludables", "is_new": false}, {"id": "LP-25", "name": "Arroz Yamaní", "brand": "Octaviano", "pres": "500gr", "price": 2300, "cat": "Dietética y Saludables", "is_new": false}, {"id": "LP-26", "name": "Mix clásico frutos secos", "brand": "Octaviano", "pres": "250gr", "price": 4000, "cat": "Dietética y Saludables", "is_new": false}, {"id": "LP-27", "name": "Mix energía frutos secos", "brand": "Octaviano", "pres": "250gr", "price": 5000, "cat": "Dietética y Saludables", "is_new": false}, {"id": "LP-28", "name": "Mix salado premium", "brand": "Octaviano", "pres": "200gr", "price": 4000, "cat": "Dietética y Saludables", "is_new": false}, {"id": "LP-29", "name": "Franui chocolate con leche 150g", "brand": "Octaviano", "pres": "Pote 150g", "price": 9000, "cat": "Dietética y Saludables", "is_new": false}, {"id": "LP-30", "name": "Franui pink chocolate blanco 150g", "brand": "Octaviano", "pres": "Pote 150g", "price": 9000, "cat": "Dietética y Saludables", "is_new": false}, {"id": "LP-31", "name": "Pasta de maní King Natural 485g", "brand": "Octaviano", "pres": "Frasco 485g", "price": 4800, "cat": "Dietética y Saludables", "is_new": false}, {"id": "LP-32", "name": "Poroto de garbanzo", "brand": "Octaviano", "pres": "200gr", "price": 3200, "cat": "Dietética y Saludables", "is_new": false}, {"id": "LP-33", "name": "Lentejas seleccionadas", "brand": "Octaviano", "pres": "200gr", "price": 4300, "cat": "Dietética y Saludables", "is_new": false}, {"id": "LP-34", "name": "Bicarbonato de sodio", "brand": "Octaviano", "pres": "200gr", "price": 4100, "cat": "Dietética y Saludables", "is_new": false}, {"id": "LP-35", "name": "Harina de avena", "brand": "Octaviano", "pres": "Kilo", "price": 3400, "cat": "Dietética y Saludables", "is_new": false}, {"id": "LP-36", "name": "Alfajor de chocolate negro sin TACC", "brand": "Wimar", "pres": "Unidad (x10 u)", "price": 2600, "cat": "Sin TACC", "is_new": false}, {"id": "LP-37", "name": "Alfajor de chocolate blanco sin TACC", "brand": "Wimar", "pres": "Unidad (x10 u)", "price": 2600, "cat": "Sin TACC", "is_new": false}, {"id": "LP-38", "name": "Alfajor de maicena sin TACC", "brand": "Wimar", "pres": "Unidad (x10 u)", "price": 2600, "cat": "Sin TACC", "is_new": false}, {"id": "LP-39", "name": "Pan proteico sin TACC", "brand": "Wimar", "pres": "Unidad (x3 u)", "price": 11200, "cat": "Sin TACC", "is_new": false}, {"id": "LP-40", "name": "Brownie sin TACC", "brand": "Wimar", "pres": "Unidad (x10 u)", "price": 3300, "cat": "Sin TACC", "is_new": false}, {"id": "LP-41", "name": "Bollitos (Panadería)", "brand": "Polo Norte", "pres": "Unidad", "price": 700, "cat": "Congelados y Panificados", "is_new": false}, {"id": "LP-42", "name": "Medialunas dulces", "brand": "Polo Norte", "pres": "Unidad", "price": 800, "cat": "Congelados y Panificados", "is_new": false}, {"id": "LP-43", "name": "Facturas surtidas", "brand": "Polo Norte", "pres": "Unidad", "price": 800, "cat": "Congelados y Panificados", "is_new": false}, {"id": "LP-44", "name": "Sacramentos", "brand": "Polo Norte", "pres": "Unidad", "price": 1500, "cat": "Congelados y Panificados", "is_new": false}, {"id": "LP-45", "name": "Empanada de Carne Suave (Docena)", "brand": "Fábrica de Empanadas", "pres": "Docena", "price": 16700, "cat": "Congelados y Panificados", "is_new": false}, {"id": "LP-46", "name": "Empanada de Carne Suave (Unidad)", "brand": "Fábrica de Empanadas", "pres": "Unidad", "price": 1400, "cat": "Congelados y Panificados", "is_new": false}, {"id": "LP-47", "name": "Empanada de Jamón y Queso (Docena)", "brand": "Fábrica de Empanadas", "pres": "Docena", "price": 15000, "cat": "Congelados y Panificados", "is_new": false}, {"id": "LP-48", "name": "Empanada de Jamón y Queso (Unidad)", "brand": "Fábrica de Empanadas", "pres": "Unidad", "price": 1300, "cat": "Congelados y Panificados", "is_new": false}, {"id": "LP-49", "name": "Empanada Caprese (Docena)", "brand": "Fábrica de Empanadas", "pres": "Docena", "price": 15000, "cat": "Congelados y Panificados", "is_new": false}, {"id": "LP-50", "name": "Empanada Caprese (Unidad)", "brand": "Fábrica de Empanadas", "pres": "Unidad", "price": 1300, "cat": "Congelados y Panificados", "is_new": false}, {"id": "LP-51", "name": "Empanada de Humita (Docena)", "brand": "Fábrica de Empanadas", "pres": "Docena", "price": 13200, "cat": "Congelados y Panificados", "is_new": false}, {"id": "LP-52", "name": "Empanada de Humita (Unidad)", "brand": "Fábrica de Empanadas", "pres": "Unidad", "price": 1100, "cat": "Congelados y Panificados", "is_new": false}, {"id": "LP-53", "name": "Empanada de Calabaza (Docena)", "brand": "Fábrica de Empanadas", "pres": "Docena", "price": 13200, "cat": "Congelados y Panificados", "is_new": false}, {"id": "LP-54", "name": "Empanada de Calabaza (Unidad)", "brand": "Fábrica de Empanadas", "pres": "Unidad", "price": 1100, "cat": "Congelados y Panificados", "is_new": false}, {"id": "LP-55", "name": "Hogaza artesanal de masa madre", "brand": "Giorgini", "pres": "Unidad", "price": 7000, "cat": "Congelados y Panificados", "is_new": false}, {"id": "LP-56", "name": "Pan de molde integral", "brand": "Giorgini", "pres": "Unidad", "price": 8500, "cat": "Congelados y Panificados", "is_new": false}, {"id": "LP-57", "name": "Pan de molde blanco", "brand": "Giorgini", "pres": "Unidad", "price": 7861, "cat": "Congelados y Panificados", "is_new": false}, {"id": "LP-58", "name": "Prepizza de masa madre", "brand": "Giorgini", "pres": "Unidad", "price": 5300, "cat": "Congelados y Panificados", "is_new": false}, {"id": "LP-59", "name": "Focaccia plancha", "brand": "Giorgini", "pres": "Plancha entera", "price": 43900, "cat": "Congelados y Panificados", "is_new": false}, {"id": "LP-60", "name": "Kéfir de agua 1000 ml PET", "brand": "Vitafir", "pres": "Botella 1L", "price": 5600, "cat": "Dietética y Saludables", "is_new": false}, {"id": "LP-61", "name": "Kéfir de leche 500 ml", "brand": "Vitafir", "pres": "Botella 500ml", "price": 5100, "cat": "Dietética y Saludables", "is_new": false}, {"id": "LP-62", "name": "Yogur griego de kéfir x 250 g", "brand": "Vitafir", "pres": "Pote 250g", "price": 4600, "cat": "Dietética y Saludables", "is_new": false}, {"id": "LP-63", "name": "Queso crema de kéfir x 250 g", "brand": "Vitafir", "pres": "Pote 250g", "price": 4600, "cat": "Dietética y Saludables", "is_new": false}, {"id": "LP-64", "name": "Miel pura de abejas", "brand": "Miel Bordallo", "pres": "Frasco 1kg", "price": 6800, "cat": "Dietética y Saludables", "is_new": false}, {"id": "LP-65", "name": "Fideos Matarazzo sin gluten penne rigati", "brand": "Mayorista Almacén", "pres": "Paquete 500g", "price": 5500, "cat": "Almacén y Viandas", "is_new": false}, {"id": "LP-66", "name": "Fideos Matarazzo integral spaghetti", "brand": "Mayorista Almacén", "pres": "Paquete 500g", "price": 2700, "cat": "Almacén y Viandas", "is_new": false}, {"id": "LP-67", "name": "Yerba Playadito con palo x 500g", "brand": "Mayorista Almacén", "pres": "Paquete 500g", "price": 3500, "cat": "Almacén y Viandas", "is_new": false}, {"id": "LP-68", "name": "Yerba Verdeflor compuesta serrana x 500g", "brand": "Mayorista Almacén", "pres": "Paquete 500g", "price": 2600, "cat": "Almacén y Viandas", "is_new": false}, {"id": "LP-69", "name": "Yerba CBSé hierbas serranas x 500g", "brand": "Mayorista Almacén", "pres": "Paquete 500g", "price": 2800, "cat": "Almacén y Viandas", "is_new": false}, {"id": "LP-70", "name": "Edulcorante Tuy Sucra x 200cc", "brand": "Mayorista Almacén", "pres": "Botella 200cc", "price": 2600, "cat": "Almacén y Viandas", "is_new": false}, {"id": "LP-71", "name": "Snack de arroz sabor pizza x 80g", "brand": "Mayorista Almacén", "pres": "Paquete 80g", "price": 1500, "cat": "Almacén y Viandas", "is_new": false}, {"id": "LP-72", "name": "Mermelada Cormillot ciruela x 390g", "brand": "Mayorista Almacén", "pres": "Frasco 390g", "price": 3700, "cat": "Almacén y Viandas", "is_new": false}, {"id": "LP-73", "name": "Mermelada Cormillot frambuesa x 390g", "brand": "Mayorista Almacén", "pres": "Frasco 390g", "price": 5800, "cat": "Almacén y Viandas", "is_new": false}, {"id": "LP-74", "name": "Mermelada Cormillot light frutilla x 390g", "brand": "Mayorista Almacén", "pres": "Doypack 237g", "price": 4700, "cat": "Almacén y Viandas", "is_new": false}, {"id": "LP-75", "name": "Mermelada Cormillot light durazno sin azúcar x 390g", "brand": "Mayorista Almacén", "pres": "Frasco 390g", "price": 4600, "cat": "Almacén y Viandas", "is_new": false}, {"id": "LP-76", "name": "Mermelada Cormillot damasco x 390g", "brand": "Mayorista Almacén", "pres": "Frasco 390g", "price": 3700, "cat": "Almacén y Viandas", "is_new": false}, {"id": "LP-77", "name": "Tostadas de arroz clásicas Leiva x 150g", "brand": "Mayorista Almacén", "pres": "Paquete 150g", "price": 1900, "cat": "Almacén y Viandas", "is_new": false}, {"id": "LP-78", "name": "Galletitas de Arroz", "brand": "Mayorista Almacén", "pres": "Paquete", "price": 4400, "cat": "Almacén y Viandas", "is_new": false}, {"id": "LP-79", "name": "Pan Dulce Musel con chips de chocolate 500g", "brand": "Panificados", "pres": "Unidad 500g", "price": 9000, "cat": "Almacén y Viandas", "is_new": false}, {"id": "LP-80", "name": "Pan Dulce Musel con frutas 500g", "brand": "Panificados", "pres": "Unidad 500g", "price": 9000, "cat": "Almacén y Viandas", "is_new": false}, {"id": "LP-81", "name": "Tortillas Burrera Tía Rosa x 420g", "brand": "Mayorista Almacén", "pres": "Paquete 420g", "price": 7300, "cat": "Almacén y Viandas", "is_new": false}, {"id": "LP-82", "name": "Papas Fritas Crunch Guacamole x 90g", "brand": "Snacks", "pres": "Paquete 90g", "price": 4400, "cat": "Almacén y Viandas", "is_new": false}, {"id": "LP-83", "name": "Papas Fritas Crunch Chile x 70g", "brand": "Snacks", "pres": "Paquete 70g", "price": 4400, "cat": "Almacén y Viandas", "is_new": false}, {"id": "LP-84", "name": "Galletitas Rumba x 110g", "brand": "Galletitas", "pres": "Paquete 110g", "price": 2400, "cat": "Almacén y Viandas", "is_new": false}, {"id": "LP-85", "name": "Papas Fritas Crunch Barbacoa x 90g", "brand": "Snacks", "pres": "Paquete 90g", "price": 4400, "cat": "Almacén y Viandas", "is_new": false}, {"id": "LP-86", "name": "Snacks sabor Cebolla", "brand": "Snacks", "pres": "Paquete", "price": 2600, "cat": "Almacén y Viandas", "is_new": false}, {"id": "LP-87", "name": "Granola Nutrifoods x 320g", "brand": "Cereales", "pres": "Paquete 320g", "price": 5400, "cat": "Dietética y Saludables", "is_new": false}, {"id": "LP-88", "name": "Galletas Granix", "brand": "Galletitas", "pres": "Paquete grande", "price": 5900, "cat": "Almacén y Viandas", "is_new": false}, {"id": "LP-89", "name": "Risotto Knorr Cuatro Quesos x 200g", "brand": "Mayorista Almacén", "pres": "Paquete 200g", "price": 5100, "cat": "Almacén y Viandas", "is_new": false}, {"id": "LP-90", "name": "Risotto Knorr Calabaza x 200g", "brand": "Mayorista Almacén", "pres": "Paquete 200g", "price": 4500, "cat": "Almacén y Viandas", "is_new": false}, {"id": "LP-91", "name": "Maní Frito Maní", "brand": "Snacks", "pres": "Paquete", "price": 5100, "cat": "Almacén y Viandas", "is_new": false}, {"id": "LP-92", "name": "Alimento Alimento (Bolsa)", "brand": "Mayorista Almacén", "pres": "Bolsa", "price": 7500, "cat": "Almacén y Viandas", "is_new": false}, {"id": "LP-93", "name": "Café Súper Cabrales Tostado x 250g", "brand": "Cafetería", "pres": "Paquete 250g", "price": 17300, "cat": "Almacén y Viandas", "is_new": false}, {"id": "LP-94", "name": "Yerba Amanda Suave x 500g", "brand": "Mayorista Almacén", "pres": "Paquete 500g", "price": 2900, "cat": "Almacén y Viandas", "is_new": false}, {"id": "LP-95", "name": "Yerba Amanda Tradicional x 500g", "brand": "Mayorista Almacén", "pres": "Paquete 500g", "price": 2400, "cat": "Almacén y Viandas", "is_new": false}, {"id": "LP-96", "name": "Alfajor Chocoarroz Pistacho x 36g", "brand": "Golosinas Saludables", "pres": "Unidad 36g", "price": 2100, "cat": "Almacén y Viandas", "is_new": false}, {"id": "LP-97", "name": "Aceite de Oliva La Tosca 500ml", "brand": "Aceites", "pres": "Botella 500ml", "price": 12000, "cat": "Almacén y Viandas", "is_new": false}, {"id": "LP-98", "name": "Aceite de Oliva La Tosca 1L", "brand": "Aceites", "pres": "Botella 1L", "price": 16500, "cat": "Almacén y Viandas", "is_new": false}, {"id": "LP-99", "name": "Aceite de Oliva Morixe 500ml", "brand": "Aceites", "pres": "Botella 500ml", "price": 9000, "cat": "Almacén y Viandas", "is_new": false}, {"id": "LP-100", "name": "Mayonesa BC Girasol x 250g", "brand": "Aderezos", "pres": "Doypack 250g", "price": 2200, "cat": "Almacén y Viandas", "is_new": false}, {"id": "LP-101", "name": "Mayonesa Hellmann's clásica", "brand": "Aderezos", "pres": "Doypack", "price": 3600, "cat": "Almacén y Viandas", "is_new": false}, {"id": "LP-102", "name": "Mayonesa Hellmann's Liviana DP x 237g", "brand": "Aderezos", "pres": "Doypack 237g", "price": 1900, "cat": "Almacén y Viandas", "is_new": false}, {"id": "LP-103", "name": "Aceitunas Verdes", "brand": "Conservas", "pres": "Frasco / Paquete", "price": 6000, "cat": "Almacén y Viandas", "is_new": false}, {"id": "LP-104", "name": "Queso Provolota Trozado x 160g", "brand": "Fiambrería", "pres": "Pack 160g", "price": 7200, "cat": "Almacén y Viandas", "is_new": false}, {"id": "LP-105", "name": "Aceite Cocinero Girasol", "brand": "Aceites", "pres": "Botella", "price": 5100, "cat": "Almacén y Viandas", "is_new": false}, {"id": "LP-106", "name": "Aceto Balsámico", "brand": "Aderezos", "pres": "Botella", "price": 5400, "cat": "Almacén y Viandas", "is_new": false}, {"id": "LP-107", "name": "Café Bonafide Tradicional (Filtro)", "brand": "Cafetería", "pres": "Paquete", "price": 11000, "cat": "Almacén y Viandas", "is_new": false}, {"id": "LP-108", "name": "Café Bonafide Tostado Brasil x 200g", "brand": "Cafetería", "pres": "Paquete 200g", "price": 8400, "cat": "Almacén y Viandas", "is_new": false}, {"id": "LP-109", "name": "Edulcorante Hileret Zucra x 400cc", "brand": "Endulzantes", "pres": "Botella 400cc", "price": 5900, "cat": "Dietética y Saludables", "is_new": false}, {"id": "LP-110", "name": "Leche La Serenísima Descremada Proteica 0% 1L", "brand": "Lácteos Funcionales", "pres": "Botella 1L", "price": 3300, "cat": "Dietética y Saludables", "is_new": false}, {"id": "LP-111", "name": "Medallones de quinoa x3", "brand": "Elaboración / Viandas", "pres": "Bolsita x 3 un", "price": 5800, "cat": "Almacén y Viandas", "is_new": false}, {"id": "LP-112", "name": "Medallones de lenteja x3 unidades", "brand": "Elaboración / Viandas", "pres": "Bolsita x 3 un", "price": 4000, "cat": "Almacén y Viandas", "is_new": false}, {"id": "LP-113", "name": "Medallones de lenteja x4 unidades", "brand": "Elaboración / Viandas", "pres": "Bolsita x 4 un", "price": 5200, "cat": "Almacén y Viandas", "is_new": false}, {"id": "LP-114", "name": "Budín con Nuez (La Pato)", "brand": "Pastelería", "pres": "Unidad", "price": 6000, "cat": "Almacén y Viandas", "is_new": false}, {"id": "LP-115", "name": "Barritas energéticas", "brand": "Snacks Saludables", "pres": "Unidad", "price": 1700, "cat": "Almacén y Viandas", "is_new": false}, {"id": "LP-116", "name": "Ensaladas", "brand": "Frescos / Viandas", "pres": "Unidad", "price": 10000, "cat": "Almacén y Viandas", "is_new": false}, {"id": "LP-117", "name": "Quipes rellenos", "brand": "Elaboración / Viandas", "pres": "unidad", "price": 13000, "cat": "Almacén y Viandas", "is_new": false}, {"id": "LP-118", "name": "Pan de Hamburguesa Clásica x4", "brand": "Pazzi Buns", "pres": "Pack x 4 un", "price": 3900, "cat": "Congelados y Panificados", "is_new": false}, {"id": "LP-119", "name": "Pan de Hamburguesa con Queso x4", "brand": "Pazzi Buns", "pres": "Pack x 4 un", "price": 4900, "cat": "Congelados y Panificados", "is_new": false}, {"id": "LP-120", "name": "Pan de Hamburguesa con Queso x2", "brand": "Pazzi Buns", "pres": "Pack x 2 un", "price": 2800, "cat": "Congelados y Panificados", "is_new": false}, {"id": "LP-121", "name": "Pan Smash x4", "brand": "Pazzi Buns", "pres": "Pack x 4 un", "price": 3000, "cat": "Congelados y Panificados", "is_new": false}, {"id": "LP-122", "name": "Pan de Pancho con Queso x6", "brand": "Pazzi Buns", "pres": "Pack x 6 un", "price": 4400, "cat": "Congelados y Panificados", "is_new": false}, {"id": "LP-123", "name": "Pan Árabe x4", "brand": "Pazzi Buns", "pres": "Pack x 4 un", "price": 2500, "cat": "Congelados y Panificados", "is_new": false}, {"id": "LP-124", "name": "Budín de pan casero", "brand": "Roxana", "pres": "Unidad", "price": 12000, "cat": "Almacén y Viandas", "is_new": false}, {"id": "LP-125", "name": "Tarta Clásica artesanal", "brand": "Analía", "pres": "Unidad", "price": 25000, "cat": "Almacén y Viandas", "is_new": false}, {"id": "LP-126", "name": "Tarta Especial artesanal", "brand": "Analía", "pres": "Unidad", "price": 27000, "cat": "Almacén y Viandas", "is_new": false}, {"id": "LP-127", "name": "Alfajores artesanales (Pack x2)", "brand": "Analía", "pres": "Pack x 2 un", "price": 4500, "cat": "Almacén y Viandas", "is_new": false}, {"id": "LP-128", "name": "Rojel completo artesanal", "brand": "Analía", "pres": "Unidad", "price": 25100, "cat": "Almacén y Viandas", "is_new": false}, {"id": "LP-129", "name": "Bandeja de Huevos de campo", "brand": "Granja / Almacén", "pres": "Bandeja", "price": 5500, "cat": "Almacén y Viandas", "is_new": false}, {"id": "LP-130", "name": "Galletitas sin sal (Pack x3)", "brand": "Mayorista Almacén", "pres": "Pack x 3 un", "price": 3900, "cat": "Almacén y Viandas", "is_new": false}, {"id": "LP-131", "name": "Leche de almendras 1L", "brand": "Bebidas Vegetales", "pres": "Botella / Tetra 1L", "price": 4800, "cat": "Dietética y Saludables", "is_new": false}, {"id": "LP-132", "name": "Budín con Chocolate (La Pato)", "brand": "Pastelería", "pres": "Unidad", "price": 6000, "cat": "Almacén y Viandas", "is_new": false}, {"id": "LP-133", "name": "Harina de avena 500g", "brand": "Octaviano", "pres": "Bolsa x 500g", "price": 1700, "cat": "Dietética y Saludables", "is_new": false}, {"id": "LP-134", "name": "Canelones de choclo", "brand": "All Frozen", "pres": "Unidad", "price": 7900, "cat": "Congelados y Panificados", "is_new": false}, {"id": "LP-135", "name": "Tarta Calabaza & roquefort", "brand": "Panettone", "pres": "430 grs.", "price": 7900, "cat": "Congelados y Panificados", "is_new": false}, {"id": "LP-136", "name": "Tarta Cebolla & queso", "brand": "Panettone", "pres": "430 grs.", "price": 7900, "cat": "Congelados y Panificados", "is_new": false}, {"id": "LP-137", "name": "Tarta Espinaca & ricotta", "brand": "Panettone", "pres": "430 grs.", "price": 7900, "cat": "Congelados y Panificados", "is_new": false}, {"id": "LP-138", "name": "Tarta Jamon & queso", "brand": "Panettone", "pres": "430 grs.", "price": 8300, "cat": "Congelados y Panificados", "is_new": false}, {"id": "LP-139", "name": "Tarta Pollo & Puerro", "brand": "Panettone", "pres": "430 grs.", "price": 8300, "cat": "Congelados y Panificados", "is_new": false}, {"id": "LP-140", "name": "Tarta Zapallito verde", "brand": "Panettone", "pres": "430 grs.", "price": 7900, "cat": "Congelados y Panificados", "is_new": false}, {"id": "LP-141", "name": "Tarta Parisien", "brand": "Panettone", "pres": "430 grs.", "price": 8500, "cat": "Congelados y Panificados", "is_new": false}, {"id": "LP-142", "name": "Tarta Capresse", "brand": "Panettone", "pres": "430 grs.", "price": 7900, "cat": "Congelados y Panificados", "is_new": false}, {"id": "LP-143", "name": "Canelon Espinaca con salsa mixta", "brand": "Panettone", "pres": "500 grs.", "price": 8300, "cat": "Congelados y Panificados", "is_new": false}, {"id": "LP-144", "name": "Canelon Humita con salsa mixta", "brand": "Panettone", "pres": "500 grs.", "price": 8300, "cat": "Congelados y Panificados", "is_new": false}, {"id": "LP-145", "name": "Lasagna Bolognesa", "brand": "Panettone", "pres": "1 kg.", "price": 18500, "cat": "Congelados y Panificados", "is_new": false}, {"id": "LP-146", "name": "Wrap Pollo", "brand": "Panettone", "pres": "2 uds.", "price": 17000, "cat": "Congelados y Panificados", "is_new": false}, {"id": "LP-147", "name": "Wrap Veggie", "brand": "Panettone", "pres": "2 uds.", "price": 15200, "cat": "Congelados y Panificados", "is_new": false}, {"id": "LP-148", "name": "Wrap Carne", "brand": "Panettone", "pres": "2 uds.", "price": 17000, "cat": "Congelados y Panificados", "is_new": false}, {"id": "LP-149", "name": "Wrap Fungi", "brand": "Panettone", "pres": "2 uds.", "price": 16300, "cat": "Congelados y Panificados", "is_new": false}, {"id": "LP-150", "name": "Wrap Bondiola", "brand": "Panettone", "pres": "2 uds.", "price": 16300, "cat": "Congelados y Panificados", "is_new": false}, {"id": "LP-151", "name": "Croquetas Quinoa & Zanahoria", "brand": "Panettone", "pres": "800 grs.", "price": 14000, "cat": "Congelados y Panificados", "is_new": false}, {"id": "LP-152", "name": "Croquetas Zapallo & Roquefort", "brand": "Panettone", "pres": "800 grs.", "price": 14000, "cat": "Congelados y Panificados", "is_new": false}, {"id": "LP-153", "name": "Milanesa Garbanzo Muzzarella", "brand": "Panettone", "pres": "4 uds.", "price": 8900, "cat": "Congelados y Panificados", "is_new": false}, {"id": "LP-154", "name": "Milanesa Garbanzo Muzza y Roquefort", "brand": "Panettone", "pres": "4 uds.", "price": 8900, "cat": "Congelados y Panificados", "is_new": false}, {"id": "LP-155", "name": "Pizza Muzzarella", "brand": "Panettone", "pres": "8 porciones", "price": 9500, "cat": "Congelados y Panificados", "is_new": false}, {"id": "LP-156", "name": "Pizza Especial", "brand": "Panettone", "pres": "8 porciones", "price": 10900, "cat": "Congelados y Panificados", "is_new": false}, {"id": "LP-157", "name": "Pizza Peperoni", "brand": "Panettone", "pres": "8 porciones", "price": 10900, "cat": "Congelados y Panificados", "is_new": false}, {"id": "LP-158", "name": "Pizza Roquefort y Cebolla", "brand": "Panettone", "pres": "8 porciones", "price": 10900, "cat": "Congelados y Panificados", "is_new": false}, {"id": "LP-159", "name": "Humita en porción", "brand": "Panettone", "pres": "500 grs.", "price": 8500, "cat": "Congelados y Panificados", "is_new": false}, {"id": "LP-160", "name": "Guiso de lentejas", "brand": "Panettone", "pres": "500 grs.", "price": 8000, "cat": "Congelados y Panificados", "is_new": false}, {"id": "LP-161", "name": "Chipá", "brand": "Panettone", "pres": "500 grs.", "price": 10500, "cat": "Congelados y Panificados", "is_new": false}, {"id": "LP-162", "name": "Harina de garbanzo 400g", "brand": "Octaviano", "pres": "Paquete 400g", "price": 4000, "cat": "Dietética y Saludables", "is_new": true}, {"id": "LP-163", "name": "Aceite de Orégano Natier 30cc", "brand": "Octaviano", "pres": "Frasco 30cc", "price": 41700, "cat": "Dietética y Saludables", "is_new": true}, {"id": "LP-164", "name": "Miel Orgánica Arachis 500g", "brand": "Octaviano", "pres": "Frasco 500g", "price": 9900, "cat": "Dietética y Saludables", "is_new": true}, {"id": "LP-165", "name": "Franui Free sin TACC 150g", "brand": "Octaviano", "pres": "Pote 150g", "price": 10000, "cat": "Dietética y Saludables", "is_new": true}, {"id": "LP-166", "name": "Harina de almendra pura sin piel 200g", "brand": "Octaviano", "pres": "Paquete 200g", "price": 10000, "cat": "Dietética y Saludables", "is_new": true}, {"id": "LP-167", "name": "Tarta Individual Espinaca & ricotta", "brand": "Panettone", "pres": "Individual", "price": 8300, "cat": "Congelados y Panificados", "is_new": true}, {"id": "LP-168", "name": "Tarta Individual Jamón & queso", "brand": "Panettone", "pres": "Individual", "price": 8300, "cat": "Congelados y Panificados", "is_new": true}, {"id": "LP-169", "name": "Tarta Individual Pollo & Puerro", "brand": "Panettone", "pres": "Individual", "price": 8300, "cat": "Congelados y Panificados", "is_new": true}, {"id": "ST-3", "name": "Fideos al Huevo", "brand": "Mikis", "pres": "150 GRM", "price": 3000, "cat": "Sin TACC", "is_new": false}, {"id": "ST-4", "name": "Fideos de Espinaca", "brand": "Mikis", "pres": "150 GRM", "price": 3000, "cat": "Sin TACC", "is_new": false}, {"id": "ST-5", "name": "Sorrentinos de Calabaza y Queso", "brand": "Mikis", "pres": "8 U", "price": 7600, "cat": "Sin TACC", "is_new": false}, {"id": "ST-6", "name": "Sorrentinos de Jamon y Queso", "brand": "Mikis", "pres": "8 U", "price": 7600, "cat": "Sin TACC", "is_new": false}, {"id": "ST-7", "name": "Sorrentinos de Ternera y Queso", "brand": "Mikis", "pres": "8 U", "price": 9200, "cat": "Sin TACC", "is_new": false}, {"id": "ST-8", "name": "Sorrentinos de 4 Quesos", "brand": "Mikis", "pres": "8 U", "price": 9100, "cat": "Sin TACC", "is_new": false}, {"id": "ST-9", "name": "Ravioles de Ricota y Queso", "brand": "Mikis", "pres": "16 U", "price": 7100, "cat": "Sin TACC", "is_new": false}, {"id": "ST-10", "name": "Ravioles de Espinaca y Queso", "brand": "Mikis", "pres": "16 U", "price": 7600, "cat": "Sin TACC", "is_new": false}, {"id": "ST-11", "name": "Ravioles de Jamon y Queso", "brand": "Mikis", "pres": "16 U", "price": 7600, "cat": "Sin TACC", "is_new": false}, {"id": "ST-12", "name": "Lasagna Carne, Jamón y Queso", "brand": "Mikis", "pres": "1 PORCIÓN", "price": 11900, "cat": "Sin TACC", "is_new": false}, {"id": "ST-13", "name": "Lasagna Pollo, Jamon y Queso", "brand": "Mikis", "pres": "1 PORCIÓN", "price": 11100, "cat": "Sin TACC", "is_new": false}, {"id": "ST-14", "name": "Ñoquis de Papa", "brand": "Mikis", "pres": "250 Grm", "price": 4600, "cat": "Sin TACC", "is_new": false}, {"id": "ST-15", "name": "Sfijas", "brand": "Mikis", "pres": "6 U", "price": 11000, "cat": "Sin TACC", "is_new": false}, {"id": "ST-16", "name": "Empanada de Pollo", "brand": "Mikis", "pres": "6 U", "price": 11700, "cat": "Sin TACC", "is_new": false}, {"id": "ST-17", "name": "Empanada de Carne", "brand": "Mikis", "pres": "6 U", "price": 13300, "cat": "Sin TACC", "is_new": false}, {"id": "ST-18", "name": "Canastitas Jamon y Queso", "brand": "Mikis", "pres": "6 U", "price": 10500, "cat": "Sin TACC", "is_new": false}, {"id": "ST-19", "name": "Canastitas Ternera, Queso y Tomate", "brand": "Mikis", "pres": "6 U", "price": 11000, "cat": "Sin TACC", "is_new": false}, {"id": "ST-20", "name": "Canastitas Cuatro Quesos", "brand": "Mikis", "pres": "6 U", "price": 10500, "cat": "Sin TACC", "is_new": false}, {"id": "ST-21", "name": "Canastitas Cebolla Caramelizada y Queso", "brand": "Mikis", "pres": "6 U", "price": 9200, "cat": "Sin TACC", "is_new": false}, {"id": "ST-22", "name": "Canastitas Queso, Cebolla y Tomate", "brand": "Mikis", "pres": "6 U", "price": 9200, "cat": "Sin TACC", "is_new": false}, {"id": "ST-23", "name": "Canastitas Choclo y Queso", "brand": "Mikis", "pres": "6 U", "price": 9200, "cat": "Sin TACC", "is_new": false}, {"id": "ST-24", "name": "Tarta Jamon y Queso", "brand": "Mikis", "pres": "INDIVIDUAL", "price": 6300, "cat": "Sin TACC", "is_new": false}, {"id": "ST-25", "name": "Tarta Calabaza y Queso", "brand": "Mikis", "pres": "INDIVIDUAL", "price": 5800, "cat": "Sin TACC", "is_new": false}, {"id": "ST-26", "name": "Tarta Espinaca y Queso", "brand": "Mikis", "pres": "INDIVIDUAL", "price": 5800, "cat": "Sin TACC", "is_new": false}, {"id": "ST-27", "name": "Tarta Pollo y Puerro", "brand": "Mikis", "pres": "INDIVIDUAL", "price": 6300, "cat": "Sin TACC", "is_new": false}, {"id": "ST-28", "name": "Tarta Espinaca y Pollo", "brand": "Mikis", "pres": "INDIVIDUAL", "price": 5800, "cat": "Sin TACC", "is_new": false}, {"id": "ST-29", "name": "Tarta Choclo y Queso", "brand": "Mikis", "pres": "INDIVIDUAL", "price": 5800, "cat": "Sin TACC", "is_new": false}, {"id": "ST-30", "name": "Nuggets de Pollo", "brand": "Mikis", "pres": "300 GRM", "price": 9700, "cat": "Sin TACC", "is_new": false}, {"id": "ST-31", "name": "Milanesa de Pollo", "brand": "Mikis", "pres": "380 GRM", "price": 8100, "cat": "Sin TACC", "is_new": false}, {"id": "ST-32", "name": "Bombitas de Queso", "brand": "Mikis", "pres": "4 U", "price": 10000, "cat": "Sin TACC", "is_new": false}, {"id": "ST-33", "name": "Wrap de Pollo", "brand": "Mikis", "pres": "2 U", "price": 15900, "cat": "Sin TACC", "is_new": false}, {"id": "ST-34", "name": "Chipa", "brand": "Mikis", "pres": "200 GRM", "price": 4400, "cat": "Sin TACC", "is_new": false}, {"id": "ST-35", "name": "Alfajor de Maicena", "brand": "Mikis", "pres": "UNIDAD", "price": 2800, "cat": "Sin TACC", "is_new": false}, {"id": "ST-37", "name": "CANASTITAS DE VERDURAS X3", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 6800, "cat": "Sin TACC", "is_new": false}, {"id": "ST-38", "name": "CANASTITAS DE VERDURAS X6", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 13500, "cat": "Sin TACC", "is_new": false}, {"id": "ST-39", "name": "SFIJAS X3", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 8000, "cat": "Sin TACC", "is_new": false}, {"id": "ST-40", "name": "SFIJAS X6", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 16000, "cat": "Sin TACC", "is_new": false}, {"id": "ST-41", "name": "EMPANADA CARNE X3", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 8500, "cat": "Sin TACC", "is_new": false}, {"id": "ST-42", "name": "EMPANADA CARNE X6", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 16500, "cat": "Sin TACC", "is_new": false}, {"id": "ST-43", "name": "EMPANADA J/Q X3", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 8000, "cat": "Sin TACC", "is_new": false}, {"id": "ST-44", "name": "EMPANADA J/Q X6", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 16000, "cat": "Sin TACC", "is_new": false}, {"id": "ST-45", "name": "EMPANADA POLLO X3", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 8500, "cat": "Sin TACC", "is_new": false}, {"id": "ST-46", "name": "EMPANADA POLLO X6", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 16500, "cat": "Sin TACC", "is_new": false}, {"id": "ST-47", "name": "EMPANADA QUESO CEBOLLA X3", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 7800, "cat": "Sin TACC", "is_new": false}, {"id": "ST-48", "name": "EMPANADA QUESO CEBOLLA X6", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 15500, "cat": "Sin TACC", "is_new": false}, {"id": "ST-49", "name": "LASAGNA CARNE Y VERDURAS", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 18500, "cat": "Sin TACC", "is_new": false}, {"id": "ST-50", "name": "LASAGNA JAMON Y QUESO", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 18500, "cat": "Sin TACC", "is_new": false}, {"id": "ST-51", "name": "MILANESA X500GR (CONGELADA)", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 27700, "cat": "Sin TACC", "is_new": false}, {"id": "ST-52", "name": "PIZZA COMUN / MARGARITA", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 8900, "cat": "Sin TACC", "is_new": false}, {"id": "ST-53", "name": "PIZZA ESPECIAL", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 9500, "cat": "Sin TACC", "is_new": false}, {"id": "ST-54", "name": "PIZZA FUGAZZETA", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 9500, "cat": "Sin TACC", "is_new": false}, {"id": "ST-55", "name": "PIZZA TERNERA", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 10500, "cat": "Sin TACC", "is_new": false}, {"id": "ST-56", "name": "PIZZA TOMATES SECOS", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 9900, "cat": "Sin TACC", "is_new": false}, {"id": "ST-57", "name": "SORRENTINOS CONG X12 CALABAZA", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 18000, "cat": "Sin TACC", "is_new": false}, {"id": "ST-58", "name": "SORRENTINOS CONG X12 ESPINACA", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 18000, "cat": "Sin TACC", "is_new": false}, {"id": "ST-59", "name": "SORRENTINOS CONG X12 JAMON Y QUESO", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 20000, "cat": "Sin TACC", "is_new": false}, {"id": "ST-60", "name": "SORRENTINOS CONG X12 TERNERA", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 22700, "cat": "Sin TACC", "is_new": false}, {"id": "ST-61", "name": "SORRENTINOS LISTOS CALABAZA", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 12500, "cat": "Sin TACC", "is_new": false}, {"id": "ST-62", "name": "SORRENTINOS LISTOS ESPINACA", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 12500, "cat": "Sin TACC", "is_new": false}, {"id": "ST-63", "name": "SORRENTINOS LISTOS J/Q", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 13700, "cat": "Sin TACC", "is_new": false}, {"id": "ST-64", "name": "SORRENTINOS LISTOS TERNERA", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 17200, "cat": "Sin TACC", "is_new": false}, {"id": "ST-65", "name": "BASTON MUZZARELLA X4", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 6800, "cat": "Sin TACC", "is_new": false}, {"id": "ST-66", "name": "BASTON POLLO CRISPY X4", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 6100, "cat": "Sin TACC", "is_new": false}, {"id": "ST-67", "name": "TARTA CALABAZA", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 9900, "cat": "Sin TACC", "is_new": false}, {"id": "ST-68", "name": "TARTA ESPINACA", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 11500, "cat": "Sin TACC", "is_new": false}, {"id": "ST-69", "name": "TARTA JAMON Y QUESO", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 11500, "cat": "Sin TACC", "is_new": false}, {"id": "ST-70", "name": "TARTA POLLO", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 11500, "cat": "Sin TACC", "is_new": false}, {"id": "ST-71", "name": "TARTA VERDURAS", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 9900, "cat": "Sin TACC", "is_new": false}, {"id": "ST-72", "name": "ALFAJOR ALMENDRAS", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 4900, "cat": "Sin TACC", "is_new": false}, {"id": "ST-73", "name": "ALFAJOR CHOC Y NJA BAÑADO", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 4400, "cat": "Sin TACC", "is_new": false}, {"id": "ST-74", "name": "ALFAJOR MAICENA", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 3900, "cat": "Sin TACC", "is_new": false}, {"id": "ST-75", "name": "ALFAJOR PISTACHO Y DDL", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 5200, "cat": "Sin TACC", "is_new": false}, {"id": "ST-76", "name": "ALFAJOR PISTACHO Y FRAMBUESA", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 5300, "cat": "Sin TACC", "is_new": false}, {"id": "ST-77", "name": "ALFAJOR COCO LOW CARB", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 5900, "cat": "Sin TACC", "is_new": false}, {"id": "ST-78", "name": "ALFAJOR MINI ALMENDRAS", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 2400, "cat": "Sin TACC", "is_new": false}, {"id": "ST-79", "name": "ALFAJOR MINI BANANITA", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 1800, "cat": "Sin TACC", "is_new": false}, {"id": "ST-80", "name": "ALFAJOR MINI BON O BON", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 1800, "cat": "Sin TACC", "is_new": false}, {"id": "ST-81", "name": "ALFAJOR MINI PISTACHOS Y FRAMB", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 2400, "cat": "Sin TACC", "is_new": false}, {"id": "ST-82", "name": "ALFAJOR MINI PISTACHO Y DDL", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 2400, "cat": "Sin TACC", "is_new": false}, {"id": "ST-83", "name": "ALFAJOR MINI CHOC Y NJA BAÑADO", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 1800, "cat": "Sin TACC", "is_new": false}, {"id": "ST-84", "name": "ALFAJOR MINI MAICENA", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 1500, "cat": "Sin TACC", "is_new": false}, {"id": "ST-85", "name": "BROWNIE", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 4900, "cat": "Sin TACC", "is_new": false}, {"id": "ST-86", "name": "BUDIN LIMON XPORC", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 3900, "cat": "Sin TACC", "is_new": false}, {"id": "ST-87", "name": "BUDIN NARANJA XPORC", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 3900, "cat": "Sin TACC", "is_new": false}, {"id": "ST-88", "name": "COOKIE CON CHIPS", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 4900, "cat": "Sin TACC", "is_new": false}, {"id": "ST-89", "name": "COOKIE DUBAI", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 5500, "cat": "Sin TACC", "is_new": false}, {"id": "ST-90", "name": "COOKIE LEMON", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 5400, "cat": "Sin TACC", "is_new": false}, {"id": "ST-91", "name": "COOKIE MARSHMELLOW", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 4530, "cat": "Sin TACC", "is_new": false}, {"id": "ST-92", "name": "COOKIE NUTELLA C/CHIPS", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 5400, "cat": "Sin TACC", "is_new": false}, {"id": "ST-93", "name": "COOKIE OREO", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 5400, "cat": "Sin TACC", "is_new": false}, {"id": "ST-94", "name": "COOKIE PINK", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 5200, "cat": "Sin TACC", "is_new": false}, {"id": "ST-95", "name": "COOKIE RED VELVET", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 5200, "cat": "Sin TACC", "is_new": false}, {"id": "ST-96", "name": "COOKIE SALT CARAMEL", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 5400, "cat": "Sin TACC", "is_new": false}, {"id": "ST-97", "name": "COOKIE VEGANA", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 4900, "cat": "Sin TACC", "is_new": false}, {"id": "ST-98", "name": "COOKIE BOMBA", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 4200, "cat": "Sin TACC", "is_new": false}, {"id": "ST-99", "name": "COOKIE CARROT", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 4500, "cat": "Sin TACC", "is_new": false}, {"id": "ST-100", "name": "COOKIE PISTACHO", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 5100, "cat": "Sin TACC", "is_new": false}, {"id": "ST-101", "name": "MINI COOKIE CON CHIPS", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 1600, "cat": "Sin TACC", "is_new": false}, {"id": "ST-102", "name": "MINI COOKIE LEMON", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 1600, "cat": "Sin TACC", "is_new": false}, {"id": "ST-103", "name": "MINI COOKIE DUBAI", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 1600, "cat": "Sin TACC", "is_new": false}, {"id": "ST-104", "name": "MINI COOKIE PINK", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 1600, "cat": "Sin TACC", "is_new": false}, {"id": "ST-105", "name": "MINI COOKIE MARSHMALLOW", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 1600, "cat": "Sin TACC", "is_new": false}, {"id": "ST-106", "name": "MINI COOKIE NUTELLA C/ CHIPS", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 1600, "cat": "Sin TACC", "is_new": false}, {"id": "ST-107", "name": "MINI COOKIE OREO", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 1600, "cat": "Sin TACC", "is_new": false}, {"id": "ST-108", "name": "MINI COOKIE RED VELVET", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 1600, "cat": "Sin TACC", "is_new": false}, {"id": "ST-109", "name": "MINI COOKIE SALT CARAMEL", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 1600, "cat": "Sin TACC", "is_new": false}, {"id": "ST-110", "name": "MINI COOKIE VEGANA", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 1600, "cat": "Sin TACC", "is_new": false}, {"id": "ST-111", "name": "MINI COOKIE BOMBA", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 1600, "cat": "Sin TACC", "is_new": false}, {"id": "ST-112", "name": "MINI COOKIE CARROT", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 1600, "cat": "Sin TACC", "is_new": false}, {"id": "ST-113", "name": "MINI COOKIE PISTACHO", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 1600, "cat": "Sin TACC", "is_new": false}, {"id": "ST-114", "name": "TITAS", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 4900, "cat": "Sin TACC", "is_new": false}, {"id": "ST-115", "name": "MINI TITAS", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 1700, "cat": "Sin TACC", "is_new": false}, {"id": "ST-116", "name": "MINI MERENGADAS", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 1700, "cat": "Sin TACC", "is_new": false}, {"id": "ST-117", "name": "PASTAFROLA X PORC", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 4200, "cat": "Sin TACC", "is_new": false}, {"id": "ST-118", "name": "MINI PASTAFROLA", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 1500, "cat": "Sin TACC", "is_new": false}, {"id": "ST-119", "name": "PEPA MARACUYA", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 1200, "cat": "Sin TACC", "is_new": false}, {"id": "ST-120", "name": "PEPA MEMBRILLO", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 1200, "cat": "Sin TACC", "is_new": false}, {"id": "ST-121", "name": "MUFFINS CHOCOLATE", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 3900, "cat": "Sin TACC", "is_new": false}, {"id": "ST-122", "name": "MUFFINS COCO", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 4500, "cat": "Sin TACC", "is_new": false}, {"id": "ST-123", "name": "MUFFINS PISTACHOS Y CHOC BLANCO", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 4500, "cat": "Sin TACC", "is_new": false}, {"id": "ST-124", "name": "MUFFINS VAINILLA", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 3900, "cat": "Sin TACC", "is_new": false}, {"id": "ST-125", "name": "POSTRE 3 LECHES", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 15000, "cat": "Sin TACC", "is_new": false}, {"id": "ST-126", "name": "POSTRE CHOCOLINA", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 15000, "cat": "Sin TACC", "is_new": false}, {"id": "ST-127", "name": "POSTRE NUGATON", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 15000, "cat": "Sin TACC", "is_new": false}, {"id": "ST-128", "name": "POSTRE OREO", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 15000, "cat": "Sin TACC", "is_new": false}, {"id": "ST-129", "name": "POSTRE CHICO 3 LECHES", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 8500, "cat": "Sin TACC", "is_new": false}, {"id": "ST-130", "name": "POSTRE CHICO CHOCOLINA", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 8500, "cat": "Sin TACC", "is_new": false}, {"id": "ST-131", "name": "POSTRE CHICO NUGATON", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 8500, "cat": "Sin TACC", "is_new": false}, {"id": "ST-132", "name": "POSTRE CHICO OREO", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 8500, "cat": "Sin TACC", "is_new": false}, {"id": "ST-133", "name": "GRANOLA ESTANDAR X250G", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 9000, "cat": "Sin TACC", "is_new": false}, {"id": "ST-134", "name": "CHIPA X6", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 7000, "cat": "Sin TACC", "is_new": false}, {"id": "ST-135", "name": "PAN DE MIGA MOLDE ENTERO", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 16500, "cat": "Sin TACC", "is_new": false}, {"id": "ST-136", "name": "GRISINES X 25 G", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 680, "cat": "Sin TACC", "is_new": false}, {"id": "ST-137", "name": "GRISINES X 100 G", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 2500, "cat": "Sin TACC", "is_new": false}, {"id": "ST-138", "name": "PAN FOCACCIA", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 8600, "cat": "Sin TACC", "is_new": false}, {"id": "ST-139", "name": "PAN HAMBURGUESA X2", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 5500, "cat": "Sin TACC", "is_new": false}, {"id": "ST-140", "name": "PAN LACTAL BRIOCHE CON SEMILLAS", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 14500, "cat": "Sin TACC", "is_new": false}, {"id": "ST-141", "name": "PAN LACTAL BRIOCHE SIN SEMILLAS", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 14000, "cat": "Sin TACC", "is_new": false}, {"id": "ST-142", "name": "PAN PROTEICO INTEGRAL", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 16500, "cat": "Sin TACC", "is_new": false}, {"id": "ST-143", "name": "PAN MASA MADRE/ HOGAZA CON TRIGO CERRACEDO", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 16500, "cat": "Sin TACC", "is_new": false}, {"id": "ST-144", "name": "PAN NUBE PROTEICO X2", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 8000, "cat": "Sin TACC", "is_new": false}, {"id": "ST-145", "name": "PAN SANGUCHERO X1", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 5600, "cat": "Sin TACC", "is_new": false}, {"id": "ST-146", "name": "PAN ARABE X2", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 5500, "cat": "Sin TACC", "is_new": false}, {"id": "ST-147", "name": "PAN VILLEQUITO X2 (TIPO CHIP)", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 5600, "cat": "Sin TACC", "is_new": false}, {"id": "ST-148", "name": "PAN PANCHO X3", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 6400, "cat": "Sin TACC", "is_new": false}, {"id": "ST-149", "name": "PREPIZZA X1", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 6800, "cat": "Sin TACC", "is_new": false}, {"id": "ST-150", "name": "FAJITAS X4", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 5400, "cat": "Sin TACC", "is_new": false}, {"id": "ST-151", "name": "MEDIALUNA", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 3200, "cat": "Sin TACC", "is_new": false}, {"id": "ST-152", "name": "MEDIALUNA X3", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 8100, "cat": "Sin TACC", "is_new": false}, {"id": "ST-153", "name": "SANDW CHIPALEQUITO J/Q", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 10900, "cat": "Sin TACC", "is_new": false}, {"id": "ST-154", "name": "SANDW CHIPALEQUITO T/Q", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 11500, "cat": "Sin TACC", "is_new": false}, {"id": "ST-155", "name": "SANDW CHIPALEQUITO T/Q Y TOMATE", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 13400, "cat": "Sin TACC", "is_new": false}, {"id": "ST-156", "name": "SANDW CHIPALEQUITO QUESO/ TOMATE", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 10900, "cat": "Sin TACC", "is_new": false}, {"id": "ST-157", "name": "SANDWICH PAN DE MIGA JAMON Y QUESO", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 4500, "cat": "Sin TACC", "is_new": false}, {"id": "ST-158", "name": "SANDWICH PAN DE MIGA TERNERA Y QUESO", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 4900, "cat": "Sin TACC", "is_new": false}, {"id": "ST-159", "name": "KETO- ALFAJOR ALMENDRAS CON DDL", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 6200, "cat": "Keto y Low Carb", "is_new": false}, {"id": "ST-160", "name": "KETO- BARRITA QUINOA POP", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 4500, "cat": "Keto y Low Carb", "is_new": false}, {"id": "ST-161", "name": "KETO- PAN SANGUCHERO X1", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 5900, "cat": "Keto y Low Carb", "is_new": false}, {"id": "ST-162", "name": "KETO- PAN SANGUCHERO X2", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 5900, "cat": "Keto y Low Carb", "is_new": false}, {"id": "ST-163", "name": "KETO- PREPIZZAS X2", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 9900, "cat": "Keto y Low Carb", "is_new": false}, {"id": "ST-164", "name": "KETO- PIZZA COMUN", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 11500, "cat": "Keto y Low Carb", "is_new": false}, {"id": "ST-165", "name": "KETO- PIZZA ESPECIAL", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 12100, "cat": "Keto y Low Carb", "is_new": false}, {"id": "ST-166", "name": "KETO- PIZZA TERNERA", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 12600, "cat": "Keto y Low Carb", "is_new": false}, {"id": "ST-167", "name": "KETO- TARTA ESPINACA", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 12500, "cat": "Keto y Low Carb", "is_new": false}, {"id": "ST-168", "name": "KETO- TARTA POLLO", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 14900, "cat": "Keto y Low Carb", "is_new": false}, {"id": "ST-169", "name": "KETO- CANASTITAS DE VERDURA Y POLLO X6", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 16500, "cat": "Keto y Low Carb", "is_new": false}, {"id": "ST-170", "name": "KETO- CANASTITAS DE VERDURA Y POLLO X3", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 8500, "cat": "Keto y Low Carb", "is_new": false}, {"id": "ST-171", "name": "PRODUCTO FINDE / SIN AZÚCAR", "brand": "Villecco Sin Gluten", "pres": "Unidad", "price": 8200, "cat": "Sin TACC", "is_new": true}, {"id": "ST-172", "name": "Bizcochitos Premezcla Base de Harina de Almendra (No Keto)", "brand": "En Casa Con Amor", "pres": "Paquete", "price": 7400, "cat": "Sin TACC", "is_new": true}, {"id": "ST-173", "name": "Bizcochitos Keto", "brand": "En Casa Con Amor", "pres": "Paquete", "price": 12000, "cat": "Keto y Low Carb", "is_new": true}, {"id": "ST-174", "name": "Crackers Premezcla Base de Harina de Almendra (No Keto)", "brand": "En Casa Con Amor", "pres": "Paquete", "price": 7400, "cat": "Sin TACC", "is_new": true}, {"id": "ST-175", "name": "Crackers Keto", "brand": "En Casa Con Amor", "pres": "Paquete", "price": 12000, "cat": "Keto y Low Carb", "is_new": true}, {"id": "ST-176", "name": "Alfajor Maicena x3 Premezcla Base de Harina de Almendra (No Keto)", "brand": "En Casa Con Amor", "pres": "Pack x3", "price": 9000, "cat": "Sin TACC", "is_new": true}, {"id": "ST-177", "name": "Alfajor Pepito x3 Premezcla Base de Harina de Almendra (No Keto)", "brand": "En Casa Con Amor", "pres": "Pack x3", "price": 9000, "cat": "Sin TACC", "is_new": true}, {"id": "ST-178", "name": "Alfajor Pepito Keto x3", "brand": "En Casa Con Amor", "pres": "Pack x3", "price": 10000, "cat": "Keto y Low Carb", "is_new": true}, {"id": "ST-179", "name": "Budín Mini Keto Arándanos 150g", "brand": "En Casa Con Amor", "pres": "Unidad 150g", "price": 8400, "cat": "Keto y Low Carb", "is_new": true}, {"id": "ST-180", "name": "Alfajor Viral Sin TACC", "brand": "En Casa Con Amor", "pres": "Unidad", "price": 5000, "cat": "Sin TACC", "is_new": true}, {"id": "ST-181", "name": "Alfajor Lemonfit Sin TACC", "brand": "En Casa Con Amor", "pres": "Unidad", "price": 5000, "cat": "Sin TACC", "is_new": true}, {"id": "ST-182", "name": "Alfajor Pepito Premezcla Unidad", "brand": "En Casa Con Amor", "pres": "Unidad", "price": 2900, "cat": "Sin TACC", "is_new": true}, {"id": "ST-183", "name": "Alfajor Maicena Premezcla Unidad", "brand": "En Casa Con Amor", "pres": "Unidad", "price": 2900, "cat": "Sin TACC", "is_new": true}];
+    const CATEGORIES = ["TODOS", "Sin TACC", "Congelados y Panificados", "Almacén y Viandas", "Dietética y Saludables", "Keto y Low Carb"];
+
+    let activeCat = "TODOS";
+    let searchTerm = "";
+    const cart = {};
+
+    function formatARS(num) {
+      return "$" + num.toLocaleString("es-AR");
+    }
+
+    function renderTabs() {
+      const wrap = document.getElementById("categoryTabs");
+      wrap.innerHTML = CATEGORIES.map(cat => `
+        <button class="tab-btn ${cat === activeCat ? 'active' : ''}" onclick="setCat('${cat}')">${cat}</button>
+      `).join("");
+    }
+
+    function setCat(cat) {
+      activeCat = cat;
+      renderTabs();
+      renderProducts();
+    }
+
+    function addToCart(id) {
+      cart[id] = (cart[id] || 0) + 1;
+      updateCartUI();
+      renderProducts();
+    }
+
+    function changeQty(id, delta) {
+      const next = (cart[id] || 0) + delta;
+      if (next <= 0) delete cart[id];
+      else cart[id] = next;
+      updateCartUI();
+      renderProducts();
+    }
+
+    function updateCartUI() {
+      let totalQty = 0;
+      let totalSum = 0;
+      for (const [id, qty] of Object.entries(cart)) {
+        const p = PRODUCTS.find(x => x.id === id);
+        if (p) {
+          totalQty += qty;
+          totalSum += p.price * qty;
+        }
+      }
+      const bar = document.getElementById("cartBar");
+      if (totalQty > 0) {
+        bar.classList.add("visible");
+        document.getElementById("cartCount").textContent = `${totalQty} ${totalQty === 1 ? 'producto' : 'productos'} en tu pedido`;
+        document.getElementById("cartTotal").textContent = formatARS(totalSum);
+      } else {
+        bar.classList.remove("visible");
+      }
+    }
+
+    function renderProducts() {
+      const q = searchTerm.toLowerCase().trim();
+      const filtered = PRODUCTS.filter(p => {
+        const matchCat = activeCat === "TODOS" || p.cat === activeCat;
+        const matchText = !q || p.name.toLowerCase().includes(q) || p.brand.toLowerCase().includes(q) || p.pres.toLowerCase().includes(q);
+        return matchCat && matchText;
+      });
+
+      document.getElementById("countBadge").textContent = `${filtered.length} productos`;
+      const grid = document.getElementById("productGrid");
+      grid.innerHTML = filtered.map(p => {
+        const qty = cart[p.id] || 0;
+        const actionHTML = qty === 0
+          ? `<button class="btn-add" onclick="addToCart('${p.id}')">+ Agregar</button>`
+          : `<div class="qty-controls">
+               <button class="btn-qty" onclick="changeQty('${p.id}', -1)">-</button>
+               <span class="qty-num">${qty}</span>
+               <button class="btn-qty" onclick="changeQty('${p.id}', 1)">+</button>
+             </div>`;
+        return `
+          <div class="card">
+            ${p.is_new ? '<span class="new-tag">Nuevo</span>' : ''}
+            <div>
+              <div class="card-cat">${p.brand}</div>
+              <div class="card-title">${p.name}</div>
+              <div class="card-meta">${p.pres}</div>
+            </div>
+            <div class="card-footer">
+              <span class="price">${formatARS(p.price)}</span>
+              ${actionHTML}
+            </div>
+          </div>
+        `;
+      }).join("");
+    }
+
+    function enviarWhatsApp() {
+      let lines = ["Hola *Chui Congelados & Dietética*! Quiero hacer el siguiente pedido:"];
+      let total = 0;
+      for (const [id, qty] of Object.entries(cart)) {
+        const p = PRODUCTS.find(x => x.id === id);
+        if (p) {
+          const sub = p.price * qty;
+          total += sub;
+          lines.push(`• ${qty}x ${p.name} (${p.pres}) — ${formatARS(sub)}`);
+        }
+      }
+      lines.push(`\n*Total estimado: ${formatARS(total)}*`);
+      const url = `https://wa.me/${TELEFONO_WHATSAPP}?text=${encodeURIComponent(lines.join("\n"))}`;
+      window.open(url, "_blank");
+    }
+
+    function copiarLink() {
+      navigator.clipboard.writeText(window.location.href);
+      alert("¡Enlace de la tienda copiado!");
+    }
+
+    document.getElementById("searchInput").addEventListener("input", e => {
+      searchTerm = e.target.value;
+      renderProducts();
+    });
+
+    renderTabs();
+    renderProducts();
+  </script>
+</body>
+</html>
